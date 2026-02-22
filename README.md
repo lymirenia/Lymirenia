@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="img/Header.jpg" width="100%" alt="Lymrrr Header">
+  <img src="IMG/Header.jpg" width="100%" alt="Lymrrr Header">
   <h1>Привет, я Lymrrr!</h1>
   <p><i>«Просто будь легче» — мой девиз и подход к разработке</i></p>
 </div>
