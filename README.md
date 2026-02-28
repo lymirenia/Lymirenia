@@ -1,6 +1,6 @@
 <div align="center">
   <img src="IMG/Header.jpg" width="100%" style="aspect-ratio: 736/380; object-fit: cover;" alt="Lymrrr Header">
-  <h1>Привет, я Lymrrr!</h1>
+  <h1>Привет, я Lymirenia!</h1>
   <p><i>«Просто будь легче» — мой девиз и подход к разработке</i></p>
 </div>
 
