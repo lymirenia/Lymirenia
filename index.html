@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="yandex-verification" content="7eeee61b57680e99" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт в разработке</title>
+    <!-- Подключение красивого шрифта Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0c1f 0%, #1a1a2f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Анимированный фон с частицами */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(10px) translateX(-15px); }
+            75% { transform: translateY(15px) translateX(20px); }
+        }
+
+        /* Затемнение поверх частиц для читаемости */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(10, 8, 20, 0.4) 100%);
+            z-index: 2;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            width: 90%;
+            margin: 2rem;
+            padding: 3rem 2rem;
+            background: rgba(20, 18, 35, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Анимированная иконка */
+        .gear-icon {
+            margin-bottom: 2rem;
+            display: inline-block;
+            animation: rotate 12s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .gear-icon svg {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 0 15px rgba(110, 87, 255, 0.5));
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #c0b7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(110, 87, 255, 0.3);
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #6e57ff, #b48aff, #6e57ff);
+            margin: 2rem auto;
+            border-radius: 2px;
+            background-size: 200% 100%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .info-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2.5rem 0;
+        }
+
+        .block {
+            flex: 1 1 200px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 1.5rem 1rem;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .block:hover {
+            transform: translateY(-5px);
+            border-color: rgba(110, 87, 255, 0.4);
+        }
+
+        .block-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .block-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #b48aff;
+        }
+
+        .block-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .progress-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 30px;
+            height: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 68%;
+            background: linear-gradient(90deg, #6e57ff, #b48aff);
+            border-radius: 30px;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .percentage {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b48aff;
+            margin-top: -1rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-signup {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .email-input {
+            flex: 1 1 250px;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 60px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input:focus {
+            border-color: #6e57ff;
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .subscribe-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #6e57ff, #9f8aff);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .subscribe-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px -5px rgba(110, 87, 255, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .social-link:hover {
+            color: #b48aff;
+        }
+
+        .social-link span {
+            font-size: 1.2rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.5rem;
+                border-radius: 32px;
+            }
+            .block {
+                flex-basis: 100%;
+            }
+            .email-signup {
+                flex-direction: column;
+            }
+            .subscribe-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированные частицы фона -->
+    <div class="particles" id="particles"></div>
+    <div class="overlay"></div>
+
+    <div class="container">
+        <!-- Анимированная иконка шестеренки -->
+        <div class="gear-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="url(#grad1)" stroke="url(#grad1)" stroke-width="1.5"/>
+                <path d="M19.4 15.5L18.5 18.6L15.4 19.5L12 21L8.6 19.5L5.5 18.6L4.6 15.5L3 12L4.6 8.6L5.5 5.5L8.6 4.6L12 3L15.4 4.6L18.5 5.5L19.4 8.6L21 12L19.4 15.5Z" stroke="url(#grad1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="grad1" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#6e57ff"/>
+                        <stop offset="1" stop-color="#b48aff"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <h1>Скоро здесь</h1>
+        <div class="subtitle">
+            Мы работаем над чем-то удивительным. Следите за обновлениями!
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Информационные блоки -->
+        <div class="info-blocks">
+            <div class="block">
+                <span class="block-icon">🎨</span>
+                <div class="block-title">Уникальный дизайн</div>
+                <div class="block-text">Создаём современный и запоминающийся облик</div>
+            </div>
+            <div class="block">
+                <span class="block-icon">⚡</span>
+                <div class="block-title">Высокая скорость</div>
+                <div class="block-text">Оптимизируем всё до мелочей</div>
+            </div>
+            <div class="block">
+                <span class="block-icon">📱</span>
+                <div class="block-title">Адаптивность</div>
+                <div class="block-text">Идеально на всех устройствах</div>
+            </div>
+        </div>
+
+        <!-- Прогресс-бар (просто для красоты, число можно менять) -->
+        <div class="progress-container">
+            <div class="progress-bar" style="width: 68%;"></div>
+        </div>
+        <div class="percentage">68% готово</div>
+
+        <!-- Форма подписки (можно убрать, если не нужна) -->
+        <div class="email-signup">
+            <input type="email" class="email-input" placeholder="Ваш email" value="">
+            <button class="subscribe-btn">Сообщить о запуске</button>
+        </div>
+        <div style="color: rgba(255,255,255,0.4); font-size: 0.8rem; margin-top: -1rem;">
+            *это демо-форма, отправка не настроена
+        </div>
+
+        <!-- Социальные сети (замените ссылки на свои) -->
+        <div class="social-links">
+            <a href="#" class="social-link"><span>📘</span> Facebook</a>
+            <a href="#" class="social-link"><span>📱</span> Instagram</a>
+            <a href="#" class="social-link"><span>🐦</span> Twitter</a>
+            <a href="#" class="social-link"><span>💬</span> Telegram</a>
+        </div>
+
+        <footer>
+            © 2024 | Все права защищены
+        </footer>
+    </div>
+
+    <script>
+        // Генерация анимированных частиц на фоне
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Случайные размеры
+                const size = Math.random() * 8 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Случайная позиция
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Случайная задержка анимации
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particle.style.animationDuration = `${Math.random() * 15 + 15}s`;
+
+                // Немного разная прозрачность
+                particle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.1})`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Небольшая интерактивность для кнопки (просто консоль)
+        document.querySelector('.subscribe-btn').addEventListener('click', function() {
+            const email = document.querySelector('.email-input').value;
+            if (email) {
+                alert(`Спасибо за интерес! Мы сообщим на ${email} о запуске. (демо-режим)`);
+            } else {
+                alert('Пожалуйста, введите email (демо-режим)');
+            }
+        });
+    </script>
+</body>
+</html>
